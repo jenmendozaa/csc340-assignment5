@@ -12,6 +12,47 @@
 // Assignment 2 functions -------------------------------------------
 // TO DO: implement the two functions here
 
+template<class ItemType>
+bool LinkedBag<ItemType>::append(const ItemType& newEntry) {
+	Node<ItemType>* newNodePtr = new Node<ItemType>(newEntry);  // Create a new node
+
+	if (headPtr == nullptr) {
+		// If the bag is empty, set the new node as the head
+		headPtr = newNodePtr;
+	} else {
+		// Traverse to the end of the chain
+		Node<ItemType>* curPtr = headPtr;
+		while (curPtr->getNext() != nullptr) {
+			curPtr = curPtr->getNext();
+		}
+		// Add the new node at the end
+		curPtr->setNext(newNodePtr);
+	}
+
+	itemCount++;  // Increment the count of items
+	return true;  // Always succeeds
+}
+
+
+template<class ItemType>
+Node<ItemType>* LinkedBag<ItemType>::findKthItem(const int& k) const {
+	if (k < 0 || k >= itemCount) {
+		return nullptr;  // Invalid index
+	}
+
+	Node<ItemType>* curPtr = headPtr;  // Start at the head
+	int index = 0;
+
+	// Traverse the linked list until the k-th item
+	while (curPtr != nullptr && index < k) {
+		curPtr = curPtr->getNext();
+		++index;
+	}
+
+	return curPtr;  // Return the k-th node
+}
+
+
 // ------------------------------------------------------------------
 
 template<class ItemType>
