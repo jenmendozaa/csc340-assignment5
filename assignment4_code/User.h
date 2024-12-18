@@ -2,7 +2,8 @@
 #include <string> // allows me to use std::string
 #include <iostream> // included for input and output operations
 
-
+#ifndef USER_H
+#define USER_H
 // To DO: define the class User with the necessary functions and data fields
 class User { // defining the class User
 
@@ -16,12 +17,17 @@ private: // creating Data needed Data Members for our User
 public: // creating constructor to initialize user object
     User(const std::string & userName, const std::string & emailAdd, const std::string & pass, const std::string & userBio, const std::string & profilePic);
 
+    User() : username(""), email(""), password(""), bio(""), profilePicture("") {}
+
     // creating getter functions for me to be able to access our private data memebres username, email, password, and posts
     std::string getUsername() const { return username;} // allows us to be able to return user username
     std::string getEmail() const { return email;} // allows us to be able to return email
 
-    void displayUser() {
-
+    void displayUser()const {
+        std::cout << "Username: " << username << std::endl;
+        std::cout << "Email: " << email << std::endl;
+        std::cout << "Bio: " << bio << std::endl;
+        std::cout << "Profile Picture: " << profilePicture << std::endl;
     }
 
 
@@ -36,6 +42,6 @@ public: // creating constructor to initialize user object
 
 };
 
-
+#endif
 
 
